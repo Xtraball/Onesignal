@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="onesignal-cordova-plugin"
+    id="Onesignal"
     version="3.2.0">
 
   <name>OneSignal Push Notifications</name>
@@ -30,8 +30,20 @@
   <js-module src="dist/OSNotification.js" name="OSNotification" />
 
   <platform name="android">
-    <framework src="com.onesignal:OneSignal:4.8.2" />
+    <framework src="com.onesignal:OneSignal:4.8.3" />
     <framework src="build-extras-onesignal.gradle" custom="true" type="gradleReference" />
+
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.INTERNET"/>
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+      <uses-permission android:name="android.permission.WAKE_LOCK"/>
+      <uses-permission android:name="android.permission.VIBRATE"/>
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+      <meta-data android:name="com.onesignal.NotificationServiceExtension"
+                 android:value="com.onesignal.cordova.NotificationServiceExtension" />
+    </config-file>
 
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="OneSignalPush" >
@@ -47,6 +59,7 @@
     <source-file src="src/android/com/onesignal/cordova/OneSignalOutcomeController.java" target-dir="src/com/onesignal/cordova/" />
     <source-file src="src/android/com/onesignal/cordova/OneSignalInAppMessagingController.java" target-dir="src/com/onesignal/cordova/" />
     <source-file src="src/android/com/onesignal/cordova/CallbackHelper.java" target-dir="src/com/onesignal/cordova/" />
+    <source-file src="src/android/com/onesignal/cordova/NotificationServiceExtension.java" target-dir="src/com/onesignal/cordova/" />
   </platform>
 
   <!-- ios -->
@@ -76,7 +89,7 @@
             <source url="https://cdn.cocoapods.org/"/>
         </config>
         <pods use-frameworks="true">
-            <pod name="OneSignalXCFramework" spec="3.11.2" />
+            <pod name="OneSignalXCFramework" spec="3.12.3" />
         </pods>
     </podspec>
 
