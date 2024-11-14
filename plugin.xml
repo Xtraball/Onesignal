@@ -30,7 +30,7 @@
   <js-module src="dist/OSNotification.js" name="OSNotification" />
 
   <platform name="android">
-    <framework src="com.onesignal:OneSignal:4.8.3" />
+    <framework src="com.onesignal:OneSignal:4.8.10" />
     <framework src="build-extras-onesignal.gradle" custom="true" type="gradleReference" />
 
     <config-file target="AndroidManifest.xml" parent="/manifest">
@@ -89,7 +89,7 @@
             <source url="https://cdn.cocoapods.org/"/>
         </config>
         <pods use-frameworks="true">
-            <pod name="OneSignalXCFramework" spec="3.12.3" />
+            <pod name="OneSignalXCFramework" spec="3.12.10" />
         </pods>
     </podspec>
 
