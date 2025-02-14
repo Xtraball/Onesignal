@@ -2,7 +2,7 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="Onesignal"
-    version="3.2.0">
+    version="5.2.9">
 
   <name>OneSignal Push Notifications</name>
   <author>Josh Kasten, Bradley Hesse, Rodrigo Gomez-Palacio</author>
@@ -26,24 +26,20 @@
   </engines>
 
   <js-module src="dist/NotificationReceivedEvent.js" name="NotificationReceivedEvent" />
-  <js-module src="dist/Subscription.js" name="Subscription" />
   <js-module src="dist/OSNotification.js" name="OSNotification" />
+  <js-module src="dist/UserNamespace.js" name="UserNamespace" />
+  <js-module src="dist/PushSubscriptionNamespace.js" name="PushSubscriptionNamespace" />
+  <js-module src="dist/DebugNamespace.js" name="DebugNamespace" />
+  <js-module src="dist/InAppMessagesNamespace.js" name="InAppMessagesNamespace" />
+  <js-module src="dist/SessionNamespace.js" name="SessionNamespace" />
+  <js-module src="dist/LocationNamespace.js" name="LocationNamespace" />
+  <js-module src="dist/NotificationsNamespace.js" name="NotificationsNamespace" />
+  <js-module src="dist/LiveActivitiesNamespace.js" name="LiveActivitiesNamespace" />
 
   <platform name="android">
-    <framework src="com.onesignal:OneSignal:4.8.10" />
+    <framework src="com.onesignal:OneSignal:5.1.26" />
     <framework src="build-extras-onesignal.gradle" custom="true" type="gradleReference" />
-
-    <config-file target="AndroidManifest.xml" parent="/manifest">
-      <uses-permission android:name="android.permission.INTERNET"/>
-      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-      <uses-permission android:name="android.permission.WAKE_LOCK"/>
-      <uses-permission android:name="android.permission.VIBRATE"/>
-    </config-file>
-
-    <config-file target="AndroidManifest.xml" parent="/manifest/application">
-      <meta-data android:name="com.onesignal.NotificationServiceExtension"
-                 android:value="com.onesignal.cordova.NotificationServiceExtension" />
-    </config-file>
+    <framework src="org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.10" />
 
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="OneSignalPush" >
@@ -59,7 +55,20 @@
     <source-file src="src/android/com/onesignal/cordova/OneSignalOutcomeController.java" target-dir="src/com/onesignal/cordova/" />
     <source-file src="src/android/com/onesignal/cordova/OneSignalInAppMessagingController.java" target-dir="src/com/onesignal/cordova/" />
     <source-file src="src/android/com/onesignal/cordova/CallbackHelper.java" target-dir="src/com/onesignal/cordova/" />
+    <source-file src="src/android/com/onesignal/cordova/OneSignalUtils.java" target-dir="src/com/onesignal/cordova/" />
     <source-file src="src/android/com/onesignal/cordova/NotificationServiceExtension.java" target-dir="src/com/onesignal/cordova/" />
+
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.INTERNET"/>
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+      <uses-permission android:name="android.permission.WAKE_LOCK"/>
+      <uses-permission android:name="android.permission.VIBRATE"/>
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+      <meta-data android:name="com.onesignal.NotificationServiceExtension"
+                 android:value="com.onesignal.cordova.NotificationServiceExtension" />
+    </config-file>
   </platform>
 
   <!-- ios -->
@@ -89,7 +98,7 @@
             <source url="https://cdn.cocoapods.org/"/>
         </config>
         <pods use-frameworks="true">
-            <pod name="OneSignalXCFramework" spec="3.12.10" />
+            <pod name="OneSignalXCFramework" spec="5.2.9" />
         </pods>
     </podspec>
 
